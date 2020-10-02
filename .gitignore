@@ -3,8 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Pycharm
+.idea/**
+
 # C extensions
 *.so
+
+# Secret Keys
+snowflake/snowflake/secrets.py
 
 # Distribution / packaging
 .Python
