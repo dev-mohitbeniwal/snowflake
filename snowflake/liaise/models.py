@@ -1,4 +1,5 @@
 from mongoengine import Document, fields
+from bson.objectid import ObjectId
 from django.utils import timezone
 
 
@@ -11,22 +12,22 @@ class Tag(Document):
 
 class Vote(Document):
     direction = fields.BooleanField()
-    by = fields.ObjectId()  # models.ForeignKey('cohort.Developer', on_delete=models.CASCADE)
+    by = fields.StringField()  # models.ForeignKey('cohort.Developer', on_delete=models.CASCADE)
     created_time = fields.DateTimeField(default=timezone.now) # models.DateTimeField(default=timezone.now)
 
 
 class Comment(Document):
-    by = fields.ObjectId(required=True)  # models.ForeignKey('cohort.Developer', on_delete=models.CASCADE)
+    by = fields.StringField()  # models.ForeignKey('cohort.Developer', on_delete=models.CASCADE)
     comment_text = fields.StringField(required=True)
     created_time = fields.DateTimeField(default=timezone.now)
     modified_time = fields.DateTimeField(default=timezone.now)
     votes = fields.ListField(fields.ReferenceField(Vote))
-    comments = fields.ListField(fields.ObjectId())
+    comments = fields.ListField(fields.StringField())
 
 
 class Answer(Document):
     answer_text = fields.StringField(required=True)
-    author = fields.ObjectId()  # models.ForeignKey('cohort.Developer', on_delete=models.CASCADE)
+    author = fields.StringField()  # models.ForeignKey('cohort.Developer', on_delete=models.CASCADE)
     created_time = fields.DateTimeField(default=timezone.now)
     modified_time = fields.DateTimeField(default=timezone.now)
     tags = fields.ListField(fields.ReferenceField(Tag))
@@ -40,7 +41,7 @@ class Question(Document):
     question_detail = fields.StringField(required=True)
     created_time = fields.DateTimeField(default=timezone.now)  # models.DateTimeField(default=timezone.now)
     modified_time = fields.DateTimeField(default=timezone.now)
-    developer_id = fields.ObjectId()    # ForeignKey('cohort.Developer', on_delete=models.CASCADE)
+    developer_id = fields.StringField()    # ForeignKey('cohort.Developer', on_delete=models.CASCADE)
     status = fields.IntField(choices=QUESTION_STATUS)    # models.SmallIntegerField(choices=QUESTION_STATUS)
     tags = fields.ListField(fields.ReferenceField(Tag))     # models.ManyToManyField(Tag)
     votes = fields.ListField(fields.ReferenceField(Vote))   # ArrayField(models.IntegerField())

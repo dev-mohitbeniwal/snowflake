@@ -1,4 +1,5 @@
 from mongoengine import Document, fields
+from bson.objectid import ObjectId
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.utils import timezone
@@ -26,7 +27,7 @@ class Badge(Document):
 
 
 class Post(Document):
-    by = fields.ObjectId()
+    by = fields.StringField()
     heading = fields.StringField()
     complete_post = fields.StringField()
     votes = fields.ListField(fields.ReferenceField(Vote))
