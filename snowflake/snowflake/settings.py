@@ -38,6 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
+    'rest_framework',
+    'rest_framework_mongoengine',
+    'django_mongoengine',
+    'django_mongoengine.mongo_auth',
+    'django_mongoengine.mongo_admin',
+    'liaise',
+    'cohort',
+    'snowflake'
 ]
 
 MIDDLEWARE = [
@@ -73,6 +82,11 @@ WSGI_APPLICATION = 'snowflake.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+MONGODB_DATABASES = {
+    'default': {'name': 'snowflake'}
+}
+
 
 DATABASES = {
     'default': {
